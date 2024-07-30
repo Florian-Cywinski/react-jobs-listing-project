@@ -2,6 +2,7 @@ import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } 
 import MainLayout from './layouts/MainLayout';  // Parent route (all routes in this use the main layout)
 import HomePage from './pages/HomePage';
 import JobsPage from './pages/JobsPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
       <Route path='/' element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path='/jobs' element={<JobsPage />} />
+        <Route path='*' element={<NotFoundPage />} />
       </Route>
     )
   );
