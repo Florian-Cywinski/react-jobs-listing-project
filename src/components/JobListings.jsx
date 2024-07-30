@@ -2,7 +2,7 @@ import JobListing from './JobListing';
 import jobs from '../jobs.json'   // To import the jobs array (later an object)
 
 const JobListings = () => {
-  console.log(jobs);
+  const recentJobs = jobs.slice(0, 3);
 
   return (
     <section className='bg-blue-50 px-4 py-10'>
@@ -11,7 +11,7 @@ const JobListings = () => {
           Browse Jobs
         </h2>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-            {jobs.map((job) => (
+            {recentJobs.map((job) => (
               <JobListing key={job.id} job={job} />
             ))}
           </div>
