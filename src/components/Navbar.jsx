@@ -1,8 +1,8 @@
 import logo from '../assets/images/logo.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'; // NavLinks adds a class to the active Link
 
 const Navbar = () => {
-  const linkClass = ({ isActive }) =>
+  const linkClass = ({ isActive }) =>       // isActive is a className prop from NavLink of react-router-dom 
     isActive
       ? 'bg-black text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
       : 'text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2';
