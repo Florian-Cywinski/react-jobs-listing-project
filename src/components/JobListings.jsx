@@ -8,9 +8,11 @@ const JobListings = ({ isHome = false }) => {   // isHome comes from HomePage.js
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  useEffect(() => {
+  // The following is the base way to fetch data from a client side component
+  useEffect(() => {   // There are also other ways to fetch data - react suspense is one (render while fetching (with useEffect is't fetch on render)) - react query is onother one (it's third party and easier than fetch data with useEffect) - with React-19 there is a useHook
     const fetchJobs = async () => {
-      const apiUrl = isHome ? 'http://localhost:8000/jobs?_limit=3' : 'http://localhost:8000/jobs';
+      // const apiUrl = isHome ? 'http://localhost:8000/jobs?_limit=3' : 'http://localhost:8000/jobs'; // Without using a proxy
+      const apiUrl = isHome ? '/api/jobs?_limit=3' : '/api/jobs'; // By using a proxy
       try {
         const res = await fetch(apiUrl);
         const data = await res.json();
