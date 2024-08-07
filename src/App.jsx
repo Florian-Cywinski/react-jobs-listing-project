@@ -8,10 +8,28 @@ import JobPage, { jobLoader } from './pages/JobPage';   // Fetch data with jobLo
 import AddJobPage from './pages/AddJobPage';
 
 const App = () => {
-  const addJob = (newJob) => {
-    console.log(newJob);
-    
+  // Add New Job
+  const addJob = async (newJob) => {
+    const res = await fetch('/api/jobs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newJob),
+    });
+    return;
   };
+
+  // Delete Job
+  const deleteJob = async (id) => {
+    // console.log('delete', id);
+    
+    const res = await fetch(`/api/jobs/${id}`, {
+      method: 'DELETE',
+    });
+    return;
+  };
+
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -20,7 +38,7 @@ const App = () => {
         <Route path='/jobs' element={<JobsPage />} />
         <Route path='*' element={<NotFoundPage />} />
         {/* <Route path='/jobs/:id' element={<JobPage />} />   The : signifies that it is dynamic - Fetch data with useState and useEffect */}
-        <Route path='/jobs/:id' element={<JobPage />} loader={jobLoader} />  {/* The : signifies that it is dynamic - Fetch data with jobLoader */}
+        <Route path='/jobs/:id' element={<JobPage deleteJob={deleteJob} />} loader={jobLoader} />  {/* The : signifies that it is dynamic - Fetch data with jobLoader */} {/* Pass Function deleteJob as Prop */}
         <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob} />} />  {/* Pass Function as Prop */}
       </Route>
     )

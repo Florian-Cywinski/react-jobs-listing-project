@@ -1,35 +1,54 @@
 // import { useState, useEffect } from 'react';  // useEffect allows the component to have side effects (here fetching data when the component renders) - useState to put in the fetched data
-import { useParams, useLoaderData } from 'react-router-dom'; // To get the id of the single job page (e.g. jobs/3)  // useLoaderData to access the fetched data from the route (App.jsx) (exported from this file)
+import { useParams, useLoaderData, useNavigate } from 'react-router-dom'; // To get the id of the single job page (e.g. jobs/3)  // useLoaderData to access the fetched data from the route (App.jsx) (exported from this file) // useNavigate to redirect
 // import Spinner from '../components/Spinner';
 import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const JobPage = () => {
+const JobPage = ({ deleteJob }) => {  // Function deleteJob as Prop from App.jsx
   const { id } = useParams();   // To get the id of the single job page (e.g. jobs/3)
-  const job = useLoaderData();  // useLoaderData to access the fetched data from the route (App.jsx) (exported from this file)
-
-
+  
   // The following is the base way to fetch data from a client side component
   // const [job, setJob] = useState(null);
   // const [loading, setLoading] = useState(true);
-
+  
   // useEffect(() => {   // There are also other ways to fetch data - react suspense is one (render while fetching (with useEffect is't fetch on render)) - react query is onother one (it's third party and easier than fetch data with useEffect) - with React-19 there is a useHook
   //   const fetchJob = async () => {
-  //     try {
-  //       const res = await fetch(`/api/jobs/${id}`);
-  //       const data = await res.json();
-  //       setJob(data);
-  //     } catch (error) {
-  //       console.log('Error fetching data', error);
-  //     } finally { // This code will run independent whether the try or the catch part runs before
-  //       setLoading(false);
-  //     }
-  //   };
+    //     try {
+      //       const res = await fetch(`/api/jobs/${id}`);
+      //       const data = await res.json();
+      //       setJob(data);
+      //     } catch (error) {
+        //       console.log('Error fetching data', error);
+        //     } finally { // This code will run independent whether the try or the catch part runs before
+        //       setLoading(false);
+        //     }
+        //   };
+        
+        //   fetchJob();
+        // }, []); // [] is the dependency array
+        
+        // return loading ? <Spinner /> : (<h1>{job.title}</h1>)
+        
+  // Data fetching with useLoaderData
+  const job = useLoaderData();  // useLoaderData to access the fetched data from the route (App.jsx) (exported from this file (jobLoader))
 
-  //   fetchJob();
-  // }, []); // [] is the dependency array
+  const navigate = useNavigate(); // Initialization to redirect
 
-  // return loading ? <Spinner /> : (<h1>{job.title}</h1>)
+  const onDeleteClick = (jobId) => {
+    const confirm = window.confirm(
+      'Are you sure you want to delete this listing?'
+    );
+
+    if (!confirm) return;
+
+    deleteJob(jobId);   // Function deleteJob as Prop from App.jsx
+
+    // toast.success('Job deleted successfully');
+
+    navigate('/jobs');  // redirect
+  };
+
+
 
   return (
     <>
