@@ -9,6 +9,9 @@ import AddJobPage from './pages/AddJobPage';
 import EditJobPage from './pages/EditJobPage';
 
 const App = () => {
+
+  // On larger projects one could put the following requests in a separat file called service
+
   // Add New Job
   const addJob = async (newJob) => {
     const res = await fetch('/api/jobs', {
@@ -31,6 +34,17 @@ const App = () => {
     return;
   };
 
+  // Update Job
+  const updateJob = async (job) => {
+    const res = await fetch(`/api/jobs/${job.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(job),
+    });
+    return;
+  };
 
   const router = createBrowserRouter(
     createRoutesFromElements(
