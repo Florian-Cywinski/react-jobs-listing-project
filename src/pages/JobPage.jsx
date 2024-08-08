@@ -3,6 +3,7 @@ import { useParams, useLoaderData, useNavigate } from 'react-router-dom'; // To 
 // import Spinner from '../components/Spinner';
 import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const JobPage = ({ deleteJob }) => {  // Function deleteJob as Prop from App.jsx
   const { id } = useParams();   // To get the id of the single job page (e.g. jobs/3)
@@ -43,7 +44,7 @@ const JobPage = ({ deleteJob }) => {  // Function deleteJob as Prop from App.jsx
 
     deleteJob(jobId);   // Function deleteJob as Prop from App.jsx
 
-    // toast.success('Job deleted successfully');
+    toast.success('Job deleted successfully');
 
     navigate('/jobs');  // redirect
   };

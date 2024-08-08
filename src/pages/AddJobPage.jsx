@@ -1,6 +1,6 @@
 import { useState } from 'react';   // To store what was typed into the form input fields
 import { useNavigate } from 'react-router-dom'; // To redirect after submission
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const AddJobPage = ({ addJobSubmit }) => {  // addJobSubmit is a function passed in (to add a job) - see App.jsx
   // Seperate piece of state for each input filed of the form - an alternative would be to use a single object with all fields 
@@ -36,7 +36,7 @@ const AddJobPage = ({ addJobSubmit }) => {  // addJobSubmit is a function passed
 
     addJobSubmit(newJob); // To call the passed in function with the newJob object
 
-    // toast.success('Job Added Successfully');
+    toast.success('Job Added Successfully');
 
     return navigate('/jobs'); // To redirect after submission
   };
