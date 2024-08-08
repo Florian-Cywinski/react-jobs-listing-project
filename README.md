@@ -1,8 +1,6 @@
 # React Jobs Listing Project
 
-This is a React Job Listings frontend. The data comes from a mock backend created with a json server. It's basically a json file with some data. The design is a Tailwind theme. This project is from Brad Traversy's 'React Crash Course 2024'.
-
-Check it out :) - https://react-jobs-listing-project-fc.netlify.app/
+This is a React Job Listings frontend. The data comes from a mock backend created with json-server. It's basically a json file with some data. The design is a Tailwind theme. This project is from Brad Traversy's 'React Crash Course 2024'.
 
 <img src="public/screen.png" />
 
